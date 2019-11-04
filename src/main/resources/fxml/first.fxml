@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane prefHeight="665.0" prefWidth="1188.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bsuir.DSP.lab.controller.FirstLabController">
+<Pane fx:id="harmonicPane" layoutX="27.0" layoutY="164.0" prefHeight="177.0" prefWidth="223.0" style="-fx-border-color: grey;">
+    <Slider id="HarmSliderAId" fx:id="harmSliderA" blockIncrement="1.0" layoutX="32.0" layoutY="14.0" majorTickUnit="2.0" max="20.0" min="1.0" minorTickCount="1" onDragDetected="#harmonicDrag" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+    <Slider id="HarmSliderFId" fx:id="harmSliderF" blockIncrement="1.0" layoutX="32.0" layoutY="59.0" majorTickUnit="2.0" max="20.0" min="1.0" minorTickCount="1" onDragDetected="#harmonicDrag" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+    <Slider id="HarmSliderFiId" fx:id="harmSliderFi" blockIncrement="1.0" layoutX="32.0" layoutY="103.0" majorTickUnit="100.0" max="360.0" min="1.0" minorTickCount="100" onDragDetected="#harmonicDrag" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+    <Label layoutX="14.0" layoutY="14.0" text="A" />
+    <Label layoutX="16.0" layoutY="58.0" text="f" />
+    <Label layoutX="14.0" layoutY="103.0" text="φ" />
+</Pane>
+<Pane fx:id="polyHarmPane" layoutX="27.0" layoutY="408.0" prefHeight="228.0" prefWidth="1115.0" style="-fx-border-color: grey;">
+    <Pane prefHeight="177.0" prefWidth="223.0" style="-fx-border-color: grey;">
+        <Slider fx:id="polyHarmSliderA1" blockIncrement="1.0" layoutX="32.0" layoutY="14.0" majorTickUnit="2.0" max="20.0" min="1.0" minorTickCount="1" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+        <Slider fx:id="polyHarmSliderF" blockIncrement="1.0" layoutX="32.0" layoutY="59.0" majorTickUnit="2.0" max="20.0" min="1.0" minorTickCount="1" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+        <Slider fx:id="polyHarmSliderPhi1" blockIncrement="1.0" layoutX="32.0" layoutY="103.0" majorTickUnit="100.0" max="360.0" min="1.0" minorTickCount="100" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+        <Label layoutX="14.0" layoutY="14.0" text="A" />
+        <Label layoutX="16.0" layoutY="58.0" text="f" />
+        <Label layoutX="14.0" layoutY="103.0" text="φ" />
+    </Pane>
+    <Pane layoutX="223.0" prefHeight="177.0" prefWidth="223.0" style="-fx-border-color: grey;">
+        <Slider fx:id="polyHarmSliderA2" blockIncrement="1.0" layoutX="32.0" layoutY="14.0" majorTickUnit="2.0" max="20.0" min="1.0" minorTickCount="1" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+        <Slider fx:id="polyHarmSliderF2" blockIncrement="1.0" layoutX="32.0" layoutY="59.0" majorTickUnit="2.0" max="20.0" min="1.0" minorTickCount="1" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+        <Slider fx:id="polyHarmSliderPhi2" blockIncrement="1.0" layoutX="32.0" layoutY="103.0" majorTickUnit="100.0" max="360.0" min="1.0" minorTickCount="100" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+        <Label layoutX="14.0" layoutY="14.0" text="A" />
+        <Label layoutX="16.0" layoutY="58.0" text="f" />
+        <Label layoutX="14.0" layoutY="103.0" text="φ" />
+    </Pane>
+    <Pane layoutX="446.0" prefHeight="177.0" prefWidth="223.0" style="-fx-border-color: grey;">
+        <Slider fx:id="polyHarmSliderA3" blockIncrement="1.0" layoutX="32.0" layoutY="14.0" majorTickUnit="2.0" max="20.0" min="1.0" minorTickCount="1" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+        <Slider fx:id="polyHarmSliderF3" blockIncrement="1.0" layoutX="32.0" layoutY="59.0" majorTickUnit="2.0" max="20.0" min="1.0" minorTickCount="1" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+        <Slider fx:id="polyHarmSliderPhi3" blockIncrement="1.0" layoutX="32.0" layoutY="103.0" majorTickUnit="100.0" max="360.0" min="1.0" minorTickCount="100" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+        <Label layoutX="14.0" layoutY="14.0" text="A" />
+        <Label layoutX="16.0" layoutY="58.0" text="f" />
+        <Label layoutX="14.0" layoutY="103.0" text="φ" />
+    </Pane>
+    <Pane layoutX="669.0" prefHeight="177.0" prefWidth="223.0" style="-fx-border-color: grey;">
+        <Slider fx:id="polyHarmSliderA4" blockIncrement="1.0" layoutX="32.0" layoutY="14.0" majorTickUnit="2.0" max="20.0" min="1.0" minorTickCount="1" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+        <Slider fx:id="polyHarmSliderF4" blockIncrement="1.0" layoutX="32.0" layoutY="59.0" majorTickUnit="2.0" max="20.0" min="1.0" minorTickCount="1" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+        <Slider fx:id="polyHarmSliderPhi4" blockIncrement="1.0" layoutX="32.0" layoutY="103.0" majorTickUnit="100.0" max="360.0" min="1.0" minorTickCount="100" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+        <Label layoutX="14.0" layoutY="14.0" text="A" />
+        <Label layoutX="16.0" layoutY="58.0" text="f" />
+        <Label layoutX="14.0" layoutY="103.0" text="φ" />
+    </Pane>
+    <Pane layoutX="892.0" prefHeight="177.0" prefWidth="223.0" style="-fx-border-color: grey;">
+        <Slider fx:id="polyHarmSliderA5" blockIncrement="1.0" layoutX="32.0" layoutY="14.0" majorTickUnit="2.0" max="20.0" min="1.0" minorTickCount="1" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+        <Slider fx:id="polyHarmSliderF5" blockIncrement="1.0" layoutX="32.0" layoutY="59.0" majorTickUnit="2.0" max="20.0" min="1.0" minorTickCount="1" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+        <Slider fx:id="polyHarmSliderPhi5" blockIncrement="1.0" layoutX="32.0" layoutY="103.0" majorTickUnit="100.0" max="360.0" min="1.0" minorTickCount="100" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+        <Label layoutX="14.0" layoutY="14.0" text="A" />
+        <Label layoutX="16.0" layoutY="58.0" text="f" />
+        <Label layoutX="14.0" layoutY="103.0" text="φ" />
+    </Pane>
+</Pane>
+<LineChart fx:id="LineChart" layoutX="264.0" layoutY="55.0" prefHeight="323.0" prefWidth="875.0">
+    <xAxis>
+        <NumberAxis maxWidth="1024" minWidth="1024" prefWidth="1024" side="BOTTOM" />
+    </xAxis>
+    <yAxis>
+        <NumberAxis maxHeight="20" minHeight="20" prefHeight="20" side="LEFT" />
+    </yAxis>
+</LineChart>
+<RadioButton fx:id="RadioButton" layoutX="37.0" layoutY="73.0" mnemonicParsing="false" onAction="#click" text="RadioButton" />
+</AnchorPane>
