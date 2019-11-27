@@ -1,26 +1,23 @@
 package bsuir.DSP.lab.controller;
 
 import bsuir.DSP.lab.model.Signal;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import bsuir.DSP.lab.service.FirstLabService;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FirstLabController {
 
-    private static final int N = 512;
+    private static final FirstLabService service = new FirstLabService();
     public Slider harmSliderA;
     public Slider harmSliderF;
     public Slider harmSliderFi;
@@ -43,45 +40,75 @@ public class FirstLabController {
     public LineChart<Double, Double> LineChart;
     public RadioButton RadioButton;
     public Pane harmonicPane;
-    public Button button;
+    public RadioButton sinusoid;
+    public RadioButton dutyCycle;
+    public RadioButton triangle;
+
+    public RadioButton saw;
+    public RadioButton noise;
+    public Button sound;
     private XYChart.Series series = new XYChart.Series<Double, Double>();
     private boolean isPolyHarm = false;
 
+
     public void initialize() {
-        createHarmonicSignal();
-        harmSliderA.valueProperty().addListener((ch,old,New)-> createHarmonicSignal());
-        harmSliderFi.valueProperty().addListener((ch,old,New)-> createHarmonicSignal());
-        harmSliderF.valueProperty().addListener((ch,old,New)-> createHarmonicSignal());
-        polyHarmPane.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> createPolyHarmSignal());
+        ToggleGroup group = new ToggleGroup();
+        sinusoid.setToggleGroup(group);
+        dutyCycle.setToggleGroup(group);
+        triangle.setToggleGroup(group);
+        saw.setToggleGroup(group);
+        noise.setToggleGroup(group);
+        createSignal();
+        harmSliderA.valueProperty().addListener((ch,old,New)-> createSignal());
+        harmSliderFi.valueProperty().addListener((ch,old,New)-> createSignal());
+        harmSliderF.valueProperty().addListener((ch,old,New)-> createSignal());
+        polyHarmPane.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> createSignal());
         polyHarmPane.setDisable(true);
+        service.setSeries(series);
         LineChart.getData().add(series);
     }
 
-    public void harmonicDrag(MouseEvent mouseEvent) {
-        createHarmonicSignal();
+    public void harmonicDrag() {
+        createSignal();
     }
 
-    private void createHarmonicSignal(){
-        series.getData().clear();
-        for (int x = 0; x < N; x++) {
-            double y = harmSliderA.getValue() * Math.sin( 2 * Math.PI * harmSliderF.getValue() * x / N + harmSliderFi.getValue() / 180 * Math.PI);
-            series.getData().add(new XYChart.Data<>(x, y));
-        }
+    private void createSignal(){
+        service.createSignal(getPolyHarmSignal());
     }
 
-    private void createPolyHarmSignal() {
-        series.getData().clear();
-        List<Signal> list = getPolyHarmSignal();
-        for (int i = 0; i<N; i++) {
-            double res = 0;
-            for (Signal signal : list) {
-                res += signal.getA() + Math.sin(2 * Math.PI * signal.getF() * i / N + signal.getPhi() / 180 * Math.PI);
-            }
-            series.getData().add(new XYChart.Data<>(i, res));
-        }
+    public void click() {
+        isPolyHarm = !isPolyHarm;
+        polyHarmPane.setDisable(isPolyHarm);
+        harmonicPane.setDisable(!isPolyHarm);
+    }
+
+    public void showSinusoid() {
+        service.createSinusoid(getPolyHarmSignal());
+    }
+
+    public void dutyCycle() {
+        service.createDutyCycle(getPolyHarmSignal());
+    }
+
+    public void triangle() {
+        service.createTriangle(getPolyHarmSignal());
+    }
+
+    public void saw() {
+        service.createSaw(getPolyHarmSignal());
+    }
+
+    public void noise() {
+        service.createNoise(getPolyHarmSignal());
+    }
+
+    public void playSound() {
+        service.playSignal(getPolyHarmSignal());
     }
 
     private List<Signal> getPolyHarmSignal() {
+        if (isPolyHarm)
+            return new ArrayList<>(Collections.singletonList(new Signal(harmSliderA.getValue(), harmSliderF.getValue(), harmSliderFi.getValue())));
         List<Signal> list = new ArrayList<>();
         Signal signal1 = new Signal(polyHarmSliderA1.getValue(), polyHarmSliderF.getValue(), polyHarmSliderPhi1.getValue());
         Signal signal2 = new Signal(polyHarmSliderA2.getValue(), polyHarmSliderF2.getValue(), polyHarmSliderPhi2.getValue());
@@ -94,28 +121,5 @@ public class FirstLabController {
         list.add(signal4);
         list.add(signal5);
         return list;
-    }
-
-    public void click(ActionEvent actionEvent) {
-        isPolyHarm = !isPolyHarm;
-        polyHarmPane.setDisable(isPolyHarm);
-        harmonicPane.setDisable(!isPolyHarm);
-    }
-
-
-    public void clickButton(ActionEvent actionEvent) {
-
-        Stage stage = new Stage();
-        String fxmlFile = "/fxml/main.fxml";
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-        try {
-            root = loader.load(getClass().getResourceAsStream(fxmlFile));
-            stage.setTitle("JavaFX and Maven");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

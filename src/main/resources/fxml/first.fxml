@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="665.0" prefWidth="1188.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bsuir.DSP.lab.controller.FirstLabController">
+
+<AnchorPane prefHeight="665.0" prefWidth="1188.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bsuir.DSP.lab.controller.FirstLabController">
 <Pane fx:id="harmonicPane" layoutX="27.0" layoutY="164.0" prefHeight="177.0" prefWidth="223.0" style="-fx-border-color: grey;">
     <Slider id="HarmSliderAId" fx:id="harmSliderA" blockIncrement="1.0" layoutX="32.0" layoutY="14.0" majorTickUnit="2.0" max="20.0" min="1.0" minorTickCount="1" onDragDetected="#harmonicDrag" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
     <Slider id="HarmSliderFId" fx:id="harmSliderF" blockIncrement="1.0" layoutX="32.0" layoutY="59.0" majorTickUnit="2.0" max="20.0" min="1.0" minorTickCount="1" onDragDetected="#harmonicDrag" prefHeight="44.0" prefWidth="185.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
@@ -63,5 +63,11 @@
         <NumberAxis maxHeight="20" minHeight="20" prefHeight="20" side="LEFT" />
     </yAxis>
 </LineChart>
-<RadioButton fx:id="RadioButton" layoutX="37.0" layoutY="73.0" mnemonicParsing="false" onAction="#click" text="RadioButton" />
+    <RadioButton fx:id="RadioButton" layoutX="158.0" layoutY="75.0" mnemonicParsing="false" onAction="#click" text="polyharm" />
+    <RadioButton fx:id="sinusoid" layoutX="27.0" layoutY="14.0" mnemonicParsing="false" onAction="#showSinusoid" text="sinusoid" />
+    <RadioButton fx:id="dutyCycle" layoutX="27.0" layoutY="45.0" mnemonicParsing="false" onAction="#dutyCycle" text="dutyCycle" />
+    <RadioButton fx:id="triangle" layoutX="27.0" layoutY="75.0" mnemonicParsing="false" onAction="#triangle" text="triangle" />
+    <RadioButton fx:id="saw" layoutX="27.0" layoutY="105.0" mnemonicParsing="false" onAction="#saw" text="caw" />
+    <RadioButton fx:id="noise" layoutX="27.0" layoutY="135.0" mnemonicParsing="false" onAction="#noise" text="noise" />
+   <Button fx:id="sound" layoutX="158.0" layoutY="110.0" mnemonicParsing="false" onAction="#playSound" text="sound" />
 </AnchorPane>
