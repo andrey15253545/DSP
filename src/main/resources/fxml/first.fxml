@@ -63,11 +63,13 @@
         <NumberAxis maxHeight="20" minHeight="20" prefHeight="20" side="LEFT" />
     </yAxis>
 </LineChart>
-    <RadioButton fx:id="RadioButton" layoutX="158.0" layoutY="75.0" mnemonicParsing="false" onAction="#click" text="polyharm" />
+    <RadioButton fx:id="RadioButton" layoutX="146.0" layoutY="14.0" mnemonicParsing="false" onAction="#click" text="polyharm" />
     <RadioButton fx:id="sinusoid" layoutX="27.0" layoutY="14.0" mnemonicParsing="false" onAction="#showSinusoid" text="sinusoid" />
     <RadioButton fx:id="dutyCycle" layoutX="27.0" layoutY="45.0" mnemonicParsing="false" onAction="#dutyCycle" text="dutyCycle" />
     <RadioButton fx:id="triangle" layoutX="27.0" layoutY="75.0" mnemonicParsing="false" onAction="#triangle" text="triangle" />
     <RadioButton fx:id="saw" layoutX="27.0" layoutY="105.0" mnemonicParsing="false" onAction="#saw" text="caw" />
     <RadioButton fx:id="noise" layoutX="27.0" layoutY="135.0" mnemonicParsing="false" onAction="#noise" text="noise" />
-   <Button fx:id="sound" layoutX="158.0" layoutY="110.0" mnemonicParsing="false" onAction="#playSound" text="sound" />
+   <Button fx:id="sound" layoutX="158.0" layoutY="41.0" mnemonicParsing="false" onAction="#playSound" text="sound" />
+   <Button layoutX="116.0" layoutY="71.0" mnemonicParsing="false" text="frequency modulation" onAction="#frequencyModulation" />
+   <Button layoutX="115.0" layoutY="101.0" mnemonicParsing="false" text="amplitude modulation" onAction="#amplitudeModulation" />
 </AnchorPane>

@@ -43,7 +43,6 @@ public class FirstLabController {
     public RadioButton sinusoid;
     public RadioButton dutyCycle;
     public RadioButton triangle;
-
     public RadioButton saw;
     public RadioButton noise;
     public Button sound;
@@ -121,5 +120,13 @@ public class FirstLabController {
         list.add(signal4);
         list.add(signal5);
         return list;
+    }
+
+    public void frequencyModulation() {
+        service.createFrequencyModulation(getPolyHarmSignal());
+    }
+
+    public void amplitudeModulation() {
+        service.createAmplitudeModulation(getPolyHarmSignal());
     }
 }

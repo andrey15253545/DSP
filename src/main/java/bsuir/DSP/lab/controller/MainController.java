@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class MainController {
     public Button button1;
+    public Button button2;
 
     public void openFirstLab() {
         String fxmlFile = "/fxml/first.fxml";
@@ -26,5 +27,16 @@ public class MainController {
     }
 
     public void openSecondLab() {
+        String fxmlFile = "/fxml/second.fxml";
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            Parent root = loader.load(getClass().getResourceAsStream(fxmlFile));
+            Stage stage = new Stage();
+            stage.setTitle("First");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -43,6 +43,24 @@ public class FirstLabService {
         createSignal(signals);
     }
 
+    public void createAmplitudeModulation(List<Signal> signals) {
+        series.getData().clear();
+        for (int i=0; i<N / 2; i++) {
+            series.getData().add(new XYChart.Data<>(i, f.execute(signals, (double) i / N) * (N / 2 - i) / (N / 2)));
+        }
+        for (int i= N / 2 + 1; i<N; i++) {
+            series.getData().add(new XYChart.Data<>(i, f.execute(signals, (double) i / N) * (i - N +N / 2) / (N / 2)));
+        }
+    }
+
+    public void createFrequencyModulation(List<Signal> signals) {
+        series.getData().clear();
+        for (int i = 0; i < N ; i++) {
+            series.getData().add(new XYChart.Data<>(i *  i / N , f.execute(signals, (double) i / N)));
+        }
+    }
+
+
     public void setSeries(XYChart.Series series) {
         this.series = series;
     }
@@ -74,7 +92,7 @@ public class FirstLabService {
                     .stream()
                     .map(signal ->
                         new Signal(
-                                signal.getA() * (Short.MAX_VALUE / 20),
+                                signal.getA() * (Short.MAX_VALUE/ 20),
                                 signal.getF() * (1000 / 20),
                                 signal.getPhi()
                         ))
@@ -87,7 +105,6 @@ public class FirstLabService {
                         .forEach(i -> cBuf.putShort((short) f.execute(s, i).floatValue()));
                 line.write(cBuf.array(), 0, cBuf.position());
             }
-            IntStream.range(0, SAMPLING_RATE).mapToDouble(n -> (double) n / SAMPLING_RATE).forEach(i -> System.out.println((short) f.execute(s, i).floatValue()));
             line.drain();
             line.close();
         } catch (Exception e) {
