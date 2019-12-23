@@ -7,5 +7,6 @@
    <children>
       <Button fx:id="button1" layoutX="59.0" layoutY="172.0" mnemonicParsing="false" onAction="#openFirstLab" prefHeight="56.0" prefWidth="90.0" text="First" />
       <Button fx:id="button2" layoutX="171.0" layoutY="172.0" mnemonicParsing="false" onAction="#openSecondLab" prefHeight="56.0" prefWidth="90.0" text="Second" />
+      <Button fx:id="button3" layoutX="282.0" layoutY="172.0" mnemonicParsing="false" onAction="#openThirdLab" prefHeight="56.0" prefWidth="90.0" text="Third" />
    </children>
 </AnchorPane>

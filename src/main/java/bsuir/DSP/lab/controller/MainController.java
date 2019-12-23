@@ -11,14 +11,22 @@ import java.io.IOException;
 public class MainController {
     public Button button1;
     public Button button2;
+    public Button button3;
 
     public void openFirstLab() {
-        String fxmlFile = "/fxml/first.fxml";
+        openFile("/fxml/first.fxml", "First lab");
+    }
+
+    public void openSecondLab() {
+        openFile("/fxml/second.fxml", "second lab");
+    }
+
+    private void openFile(String url, String name) {
         FXMLLoader loader = new FXMLLoader();
         try {
-            Parent root = loader.load(getClass().getResourceAsStream(fxmlFile));
+            Parent root = loader.load(getClass().getResourceAsStream(url));
             Stage stage = new Stage();
-            stage.setTitle("First");
+            stage.setTitle(name);
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -26,17 +34,7 @@ public class MainController {
         }
     }
 
-    public void openSecondLab() {
-        String fxmlFile = "/fxml/second.fxml";
-        FXMLLoader loader = new FXMLLoader();
-        try {
-            Parent root = loader.load(getClass().getResourceAsStream(fxmlFile));
-            Stage stage = new Stage();
-            stage.setTitle("First");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void openThirdLab() {
+        openFile("/fxml/third.fxml", "third lab");
     }
 }
