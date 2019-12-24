@@ -1,6 +1,7 @@
 package bsuir.DSP.lab.service;
 
-import bsuir.DSP.lab.controller.ThirdLabController;
+import bsuir.DSP.lab.model.Signal;
+import bsuir.DSP.lab.model.Spectra;
 import javafx.scene.chart.XYChart;
 
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import java.util.List;
 public class ThirdLabService {
 
     private static final int N = 512;
+    private static final List<Double> AMPLITUDES = List.of(1.0, 5.0, 7.0, 8.0, 9.0, 10.0, 17.0);
+    private static final List<Double> PHASES = List.of(Math.PI / 6, Math.PI / 4, Math.PI / 3, Math.PI / 2, 3 * Math.PI / 4, Math.PI);
 
     public XYChart.Series<Double, Double> createSeries(List<Double> list) {
         return createSeries(list, null);
@@ -31,8 +34,8 @@ public class ThirdLabService {
         return list;
     }
 
-    public ThirdLabController.Spectra createSpectra(List<Double> signal) {
-        ThirdLabController.Spectra result = new ThirdLabController.Spectra();
+    public Spectra createSpectra(List<Double> signal) {
+        Spectra result = new Spectra();
         for (int i=0; i<N/2; i++) {
             double amplitudeS = 0;
             double amplitudeC = 0;
@@ -52,7 +55,7 @@ public class ThirdLabService {
         return result;
     }
 
-    public List<Double> restoreSignal(ThirdLabController.Spectra spectra) {
+    public List<Double> restoreSignal(Spectra spectra) {
         List<Double> restoreSignal = new ArrayList<>();
         for (int i=0; i<N; i++) {
             double sum = 0;
@@ -62,5 +65,27 @@ public class ThirdLabService {
             restoreSignal.add(sum);
         }
         return restoreSignal;
+    }
+
+    public List<Double> createPolyHarmonicSignal() {
+        List<Signal> signals = createSignals();
+        return createSinusoid(signals);
+    }
+
+    private List<Double> createSinusoid(List<Signal> signals) {
+
+        return null;
+    }
+
+    private List<Signal> createSignals() {
+        List<Signal> signals = new ArrayList<>();
+        for (int i=0; i<30; i++) {
+            signals.add(new Signal(
+                    AMPLITUDES.get((int) (Math.random() * AMPLITUDES.size() % AMPLITUDES.size())),
+                    (double)i + 1,
+                    PHASES.get((int) (Math.random() * PHASES.size() % PHASES.size()))
+            ));
+        }
+        return signals;
     }
 }
