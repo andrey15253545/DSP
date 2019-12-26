@@ -24,8 +24,8 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <RadioButton fx:id="harmButton" layoutX="17.0" layoutY="100.0" mnemonicParsing="false" onAction="#drawChart" text="RadioButton" />
-      <RadioButton fx:id="polyHarmButton" layoutX="17.0" layoutY="130.0" mnemonicParsing="false" onAction="#drawPolyHarmonicChart" text="RadioButton" />
+      <RadioButton fx:id="harmButton" layoutX="17.0" layoutY="100.0" mnemonicParsing="false" onAction="#drawChart" text="harmonic" />
+      <RadioButton fx:id="polyHarmButton" layoutX="17.0" layoutY="130.0" mnemonicParsing="false" onAction="#drawPolyHarmonicChart" text="polyharmonic" />
       <Pane fx:id="polyHarmonicPane" layoutX="6.0" layoutY="391.0" prefHeight="133.0" prefWidth="110.0">
          <children>
             <RadioButton fx:id="lowFilter" layoutY="15.0" mnemonicParsing="false" onAction="#createLowFilter" text="low signal" />

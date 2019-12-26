@@ -3,6 +3,7 @@ package bsuir.DSP.lab.service;
 import bsuir.DSP.lab.model.Signal;
 import bsuir.DSP.lab.model.Spectra;
 import javafx.scene.chart.XYChart;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 public class ThirdLabService {
 
     private static final int N = 512;
+    private static final int K = 31;
     private static final List<Double> AMPLITUDES = List.of(1.0, 5.0, 7.0, 8.0, 9.0, 10.0, 17.0);
     private static final List<Double> PHASES = List.of(Math.PI / 6, Math.PI / 4, Math.PI / 3, Math.PI / 2, 3 * Math.PI / 4, Math.PI);
 
@@ -67,19 +69,71 @@ public class ThirdLabService {
         return restoreSignal;
     }
 
+    public List<Double> restoreBandPath(Spectra spectra, List<Integer> ranges) {
+        List<Double> list = new ArrayList<>();
+        List<Double> amplitudesRanges = spectra.getAmplitude();
+        List<Double> phaseRanges = spectra.getPhase();
+        for (int i=0; i<N; i++) {
+            double sum = 0;
+            for (int j = ranges.get(0); j < ranges.get(1); j++) {
+                sum += amplitudesRanges.get(j) * Math.cos(2 * Math.PI * j * i / N - phaseRanges.get(j));
+            }
+            for (int j = ranges.get(2); j < ranges.get(3); j++) {
+                sum += amplitudesRanges.get(j) * Math.cos(2 * Math.PI * j * i / N - phaseRanges.get(j));
+            }
+            list.add(sum);
+        }
+        return list;
+    }
+
+    public List<Double> restoreHigh(Spectra spectra, double cut) {
+        List<Double> list = new ArrayList<>();
+        List<Double> amplitudesRanges = spectra.getAmplitude();
+        List<Double> phaseRanges = spectra.getPhase();
+        for (int i=0; i<N; i++) {
+            double sum = 0;
+            for (int j = 30; j > cut; j--) {
+                sum += amplitudesRanges.get(j) * Math.cos(2 * Math.PI * j * i / N - phaseRanges.get(j));
+            }
+            list.add(sum);
+        }
+        return list;
+    }
+
+    public List<Double> restoreLow(@NotNull Spectra spectra, double cut) {
+        List<Double> amplitudesRanges = spectra.getAmplitude();
+        List<Double> phaseRanges = spectra.getPhase();
+        List<Double> list = new ArrayList<>();
+        for (int i=0; i<N; i++) {
+            double sum = 0;
+            for (int j = 0; j < cut; j++) {
+                sum += amplitudesRanges.get(j) * Math.cos(2 * Math.PI * j * i / N - phaseRanges.get(j));
+            }
+            list.add(sum);
+        }
+        return list;
+    }
+
     public List<Double> createPolyHarmonicSignal() {
         List<Signal> signals = createSignals();
         return createSinusoid(signals);
     }
 
     private List<Double> createSinusoid(List<Signal> signals) {
-
-        return null;
+        List<Double> list = new ArrayList<>();
+        for (int i =0; i<N; i++) {
+            double sum = 0;
+            for (int j=0; j<K; j++) {
+                sum += signals.get(j).getA() * Math.cos(2 * Math.PI * signals.get(j).getF() * i / N - signals.get(j).getPhi());
+            }
+            list.add(sum);
+        }
+        return list;
     }
 
     private List<Signal> createSignals() {
         List<Signal> signals = new ArrayList<>();
-        for (int i=0; i<30; i++) {
+        for (int i=0; i<K; i++) {
             signals.add(new Signal(
                     AMPLITUDES.get((int) (Math.random() * AMPLITUDES.size() % AMPLITUDES.size())),
                     (double)i + 1,
