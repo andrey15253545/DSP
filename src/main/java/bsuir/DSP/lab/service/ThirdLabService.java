@@ -3,7 +3,6 @@ package bsuir.DSP.lab.service;
 import bsuir.DSP.lab.model.Signal;
 import bsuir.DSP.lab.model.Spectra;
 import javafx.scene.chart.XYChart;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +99,7 @@ public class ThirdLabService {
         return list;
     }
 
-    public List<Double> restoreLow(@NotNull Spectra spectra, double cut) {
+    public List<Double> restoreLow(Spectra spectra, double cut) {
         List<Double> amplitudesRanges = spectra.getAmplitude();
         List<Double> phaseRanges = spectra.getPhase();
         List<Double> list = new ArrayList<>();

@@ -7,7 +7,6 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 

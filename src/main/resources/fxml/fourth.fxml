@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="744.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bsuir.DSP.lab.controller.FourthLabController">
+   <children>
+      <LineChart fx:id="chart" layoutX="193.0" layoutY="21.0" prefHeight="315.0" prefWidth="782.0">
+        <xAxis>
+          <NumberAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <Button fx:id="signal" layoutX="70.0" layoutY="52.0" mnemonicParsing="false" onAction="#createSignal" text="signal" />
+      <Button fx:id="slidingWindow" layoutX="70.0" layoutY="95.0" mnemonicParsing="false" onAction="#createSlidingWindow" text="Sliding Window" />
+      <Button fx:id="parabola" layoutX="70.0" layoutY="140.0" mnemonicParsing="false" onAction="#createParabola" text="Parabola" />
+      <Button fx:id="median" layoutX="70.0" layoutY="179.0" mnemonicParsing="false" onAction="#createMedian" text="Median" />
+   </children>
+</AnchorPane>

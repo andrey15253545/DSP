@@ -12,6 +12,7 @@ public class MainController {
     public Button button1;
     public Button button2;
     public Button button3;
+    public Button button4;
 
     public void openFirstLab() {
         openFile("/fxml/first.fxml", "First lab");
@@ -36,5 +37,9 @@ public class MainController {
 
     public void openThirdLab() {
         openFile("/fxml/third.fxml", "third lab");
+    }
+
+    public void openFourthLab() {
+        openFile("/fxml/fourth.fxml", "fourth lab");
     }
 }
